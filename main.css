@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary-dark: #005f73;
+  --color-primary: #0a9396;
+  --color-primary-light: #94d2bd;
+  --color-accent: #ffddd2;
+  --color-accent-strong: #fb8500;
+  --color-bg: #edf6f9;
+  --color-white: #fefae0;
+  --color-text-main: #2b2d42;
+  --color-text-muted: #8d99ae;
+  --color-success: #2a9d8f;
+  --color-warning: #e9c46a;
+  --color-danger: #e76f51;
+
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-hover: rgba(255, 255, 255, 0.85);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 109, 119, 0.08);
+
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --font-base: 'Outfit', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(186,33%,94%,1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(174,38%,85%,1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(13,67%,90%,1) 0, transparent 50%);
+  background-attachment: fixed;
+  color: var(--color-text-main);
+  height: 100vh;
+  overflow: hidden; 
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-md);
+}
+
+/* تعديل الـ Layout ليكون متجاوباً */
+.dashboard-layout {
+  display: grid;
+  height: 100vh;
+  /* هنا جعلنا العرض يتغير: 280px للكمبيوتر و 1fr للباقي */
+  grid-template-columns: minmax(200px, 280px) 1fr; 
+  grid-template-rows: 80px 1fr;
+  grid-template-areas: 
+    "sidebar header"
+    "sidebar main";
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+/* Sidebar */
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem; /* تصغير بسيط ليناسب الشاشات */
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+}
+.logo i { color: var(--color-accent-strong); }
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1; /* لتوزيع العناصر */
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-item a i { font-size: 1.5rem; }
+
+.nav-item a:hover, .nav-item.active a {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateX(5px);
+}
+
+.settings-item { margin-top: auto; } /* دفع الإعدادات للأسفل */
+
+/* Header */
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--space-lg);
+}
+
+.header-title h1 { font-size: 1.2rem; color: var(--color-primary-dark); }
+.header-title p { font-size: 0.8rem; color: var(--color-text-muted); }
+
+.header-actions { display: flex; align-items: center; gap: var(--space-md); }
+
+.notification-bell {
+  position: relative;
+  background: white;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--color-accent-strong);
+  color: white; font-size: 0.6rem;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+
+/* Main Content */
+.main-content {
+  grid-area: main;
+  overflow-y: auto;
+}
+
+/* الأزرار */
+.btn-primary {
+  margin-top: 1rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
